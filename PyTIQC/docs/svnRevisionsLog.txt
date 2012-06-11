@@ -1,0 +1,1062 @@
+This is the entire log of revisions from when TIQC-SPICE/PyTIQC was a Subversion repository. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+------------------------------------------------------------------------
+r1 | sxwang | 2010-10-26 11:19:17 -0400 (Tue, 26 Oct 2010) | 1 line
+
+Initial import
+------------------------------------------------------------------------
+r2 | sxwang | 2010-11-06 12:25:43 -0400 (Sat, 06 Nov 2010) | 1 line
+
+Added phonons and stark shift
+------------------------------------------------------------------------
+r3 | sxwang | 2010-11-09 19:25:48 -0500 (Tue, 09 Nov 2010) | 1 line
+
+Implemented dephasing. doesn't quite work yet...
+------------------------------------------------------------------------
+r4 | sxwang | 2010-11-10 15:33:48 -0500 (Wed, 10 Nov 2010) | 1 line
+
+Dephasing demonstrated with Ramsey
+------------------------------------------------------------------------
+r5 | sxwang | 2010-11-10 18:50:09 -0500 (Wed, 10 Nov 2010) | 1 line
+
+added testRamsey2.py
+------------------------------------------------------------------------
+r6 | sxwang | 2010-11-12 19:45:15 -0500 (Fri, 12 Nov 2010) | 1 line
+
+moved classes to experiment files; renamed files; implemented parallel processing.
+------------------------------------------------------------------------
+r7 | sxwang | 2010-11-12 19:57:08 -0500 (Fri, 12 Nov 2010) | 1 line
+
+renamed & moved more files
+------------------------------------------------------------------------
+r8 | sxwang | 2010-12-16 16:21:13 -0500 (Thu, 16 Dec 2010) | 1 line
+
+more Ramsey test functions
+------------------------------------------------------------------------
+r9 | sxwang | 2011-01-06 21:27:36 -0500 (Thu, 06 Jan 2011) | 1 line
+
+first pass at adding multi-ion support
+------------------------------------------------------------------------
+r10 | sxwang | 2011-01-16 12:48:47 -0500 (Sun, 16 Jan 2011) | 1 line
+
+corrected ion & phonon ordering in Hamiltonian
+------------------------------------------------------------------------
+r11 | sxwang | 2011-01-19 18:15:28 -0500 (Wed, 19 Jan 2011) | 1 line
+
+revised Hamiltonian; tested CZCNOT
+------------------------------------------------------------------------
+r12 | I.Chuang | 2011-02-02 14:44:02 -0500 (Wed, 02 Feb 2011) | 2 lines
+
+added comments (as a test)
+
+------------------------------------------------------------------------
+r13 | sxwang | 2011-02-03 10:35:27 -0500 (Thu, 03 Feb 2011) | 1 line
+
+added comment headers
+------------------------------------------------------------------------
+r14 | sxwang | 2011-02-10 18:22:32 -0500 (Thu, 10 Feb 2011) | 1 line
+
+finished expStark test cases; ignorelightshift: change detunings when appropriate. added more comments.
+------------------------------------------------------------------------
+r15 | Thomas.Monz | 2011-02-28 17:31:47 -0500 (Mon, 28 Feb 2011) | 1 line
+
+some changes to separate energy and interaction in Hamiltonian definition, added class to allow for multicolor interaction which might be used for MS simulations
+------------------------------------------------------------------------
+r16 | Thomas.Monz | 2011-02-28 17:35:53 -0500 (Mon, 28 Feb 2011) | 1 line
+
+expMS_prelim is a rough, not enough commented, homebrew, unfineshed quick-test for bichromatic interactions - there are several things to improve and check, but it's a start for all contributors
+------------------------------------------------------------------------
+r17 | sxwang | 2011-03-03 13:30:37 -0500 (Thu, 03 Mar 2011) | 1 line
+
+reverted simtools.py to rev 14; minor typos corrected in the rest
+------------------------------------------------------------------------
+r18 | Thomas.Monz | 2011-03-07 07:35:38 -0500 (Mon, 07 Mar 2011) | 1 line
+
+some changes to the plot part (getting rid of 'from x import *'); hold(true/false) was added to make sure all populations are plotted under all conditions; replaced hq = 1. ... with definition by scipy.constants.hbar
+------------------------------------------------------------------------
+r19 | sxwang | 2011-03-07 14:05:51 -0500 (Mon, 07 Mar 2011) | 1 line
+
+incorporated expMS_preliminaryinto simtools and qctools; new test file expMS.py. No dynamic switching between ODE/unitary solvers yet.
+------------------------------------------------------------------------
+r20 | Thomas.Monz | 2011-03-08 03:03:05 -0500 (Tue, 08 Mar 2011) | 1 line
+
+added jacobi matrix to ode solver -> factor of 2 faster now
+------------------------------------------------------------------------
+r21 | Thomas.Monz | 2011-03-08 05:43:53 -0500 (Tue, 08 Mar 2011) | 1 line
+
+added a phonon-overhead to the settings. the old scipt used up to 2 phonons for 2 qubits, which resulted in us banging our heads in the Hilbert space. notice the effect by running the script with phononhead={0,1,2} ... -> at least +1 phonon for a proper calculation. i knew that before but didn't notice it until now - blame it on me
+------------------------------------------------------------------------
+r22 | sxwang | 2011-03-08 20:37:54 -0500 (Tue, 08 Mar 2011) | 1 line
+
+dynamic switching between ODE and unitary implemented. Allows arbitrary pulse sequences including MS pulses. However only tested for cases where MS--> always do ODE, everything else --> unitary.
+------------------------------------------------------------------------
+r23 | Thomas.Monz | 2011-03-09 10:36:52 -0500 (Wed, 09 Mar 2011) | 1 line
+
+adding folders for a better overview
+------------------------------------------------------------------------
+r24 | Thomas.Monz | 2011-03-09 10:38:34 -0500 (Wed, 09 Mar 2011) | 1 line
+
+files have been commited to the proper folders, not needed on toplevel anymore
+------------------------------------------------------------------------
+r25 | Thomas.Monz | 2011-03-09 10:57:20 -0500 (Wed, 09 Mar 2011) | 1 line
+
+fixed a bug where it tries to call qc.makepulsesequence which has been moved into simtools itself
+------------------------------------------------------------------------
+r26 | Thomas.Monz | 2011-03-09 11:02:58 -0500 (Wed, 09 Mar 2011) | 1 line
+
+made changes to the scripts to handle the folders
+------------------------------------------------------------------------
+r27 | Thomas.Monz | 2011-03-09 11:25:38 -0500 (Wed, 09 Mar 2011) | 1 line
+
+required init files
+------------------------------------------------------------------------
+r28 | Thomas.Monz | 2011-03-10 02:56:06 -0500 (Thu, 10 Mar 2011) | 1 line
+
+added testsuite functionality, now we have to fill in the gaps/tests
+------------------------------------------------------------------------
+r29 | sxwang | 2011-03-17 15:42:00 -0400 (Thu, 17 Mar 2011) | 1 line
+
+auto-selection of stepsize in ODE solver based on pulse detuning. specify time resolution in terms of absolute time (us).
+------------------------------------------------------------------------
+r30 | sxwang | 2011-04-18 20:50:58 -0400 (Mon, 18 Apr 2011) | 1 line
+
+save the states at the end of each pulse, and the unitary matrix for all non-time-dep pulses
+------------------------------------------------------------------------
+r31 | Thomas.Monz | 2011-04-19 05:52:03 -0400 (Tue, 19 Apr 2011) | 1 line
+
+different solvers for the schroedinger equation
+------------------------------------------------------------------------
+r32 | Thomas.Monz | 2011-04-19 05:55:02 -0400 (Tue, 19 Apr 2011) | 1 line
+
+added SchroedingerEqSolvers to the __init__ for loading
+------------------------------------------------------------------------
+r33 | Thomas.Monz | 2011-04-19 05:58:51 -0400 (Tue, 19 Apr 2011) | 1 line
+
+prelim file from tm to test MS functionality and settings
+------------------------------------------------------------------------
+r34 | Thomas.Monz | 2011-04-19 07:49:17 -0400 (Tue, 19 Apr 2011) | 1 line
+
+decent version for the MS interaction
+------------------------------------------------------------------------
+r35 | sxwang | 2011-04-19 15:33:59 -0400 (Tue, 19 Apr 2011) | 1 line
+
+use SchoedingerEqSolvers for MS gate; time-to-theta conversion not correct though
+------------------------------------------------------------------------
+r36 | sxwang | 2011-04-19 15:55:22 -0400 (Tue, 19 Apr 2011) | 1 line
+
+added option to select which solver to use as a parameter
+------------------------------------------------------------------------
+r37 | Thomas.Monz | 2011-04-20 06:34:58 -0400 (Wed, 20 Apr 2011) | 1 line
+
+expMS_preliminary obsolete. look at testsuite/testscripts, which is more correct and working
+------------------------------------------------------------------------
+r38 | Thomas.Monz | 2011-04-20 11:29:58 -0400 (Wed, 20 Apr 2011) | 1 line
+
+slowly adding shaping to the ms gate, not finished yet though
+------------------------------------------------------------------------
+r39 | sxwang | 2011-04-20 14:13:41 -0400 (Wed, 20 Apr 2011) | 1 line
+
+added ACStark testscript; qctool.simulateevolution saves correct unitaries including Ulqc's.
+------------------------------------------------------------------------
+r40 | sxwang | 2011-04-21 18:22:59 -0400 (Thu, 21 Apr 2011) | 1 line
+
+another ACStark testscript to show tr(rho)>1 if ODEsolver is turned on for Rac; minor changes to param.recalculate().
+------------------------------------------------------------------------
+r41 | sxwang | 2011-04-21 20:49:34 -0400 (Thu, 21 Apr 2011) | 1 line
+
+add 'ideal' calculation module (based on computing unitaries directly), and sample codes for QFT, order-finding
+------------------------------------------------------------------------
+r42 | sxwang | 2011-04-26 16:19:25 -0400 (Tue, 26 Apr 2011) | 2 lines
+
+minor changes to MS gate parameters
+
+------------------------------------------------------------------------
+r43 | sxwang | 2011-04-26 22:33:46 -0400 (Tue, 26 Apr 2011) | 1 line
+
+added pulse shaping for MS gate
+------------------------------------------------------------------------
+r44 | Thomas.Monz | 2011-04-29 04:57:03 -0400 (Fri, 29 Apr 2011) | 1 line
+
+added displayPMTpopulations to the data object. also made same changes/improvements on it
+------------------------------------------------------------------------
+r45 | Thomas.Monz | 2011-04-29 05:04:29 -0400 (Fri, 29 Apr 2011) | 1 line
+
+yet another MS script
+------------------------------------------------------------------------
+r46 | Thomas.Monz | 2011-04-29 05:11:37 -0400 (Fri, 29 Apr 2011) | 1 line
+
+made changes for compatibility
+------------------------------------------------------------------------
+r47 | Thomas.Monz | 2011-04-29 05:12:21 -0400 (Fri, 29 Apr 2011) | 1 line
+
+minor fix so that the 'run' function works properly again
+------------------------------------------------------------------------
+r48 | sxwang | 2011-04-29 11:07:54 -0400 (Fri, 29 Apr 2011) | 1 line
+
+parity and timestepcheck for expMS; other minor changes
+------------------------------------------------------------------------
+r49 | sxwang | 2011-04-29 11:25:24 -0400 (Fri, 29 Apr 2011) | 1 line
+
+more compatibility changes
+------------------------------------------------------------------------
+r50 | Thomas.Monz | 2011-05-02 12:58:28 -0400 (Mon, 02 May 2011) | 1 line
+
+added phasespace plot-function to the data object; may grant some inside into the MS gate
+------------------------------------------------------------------------
+r51 | Thomas.Monz | 2011-05-02 12:59:16 -0400 (Mon, 02 May 2011) | 1 line
+
+also plotting the phase space ... just have to understand it
+------------------------------------------------------------------------
+r52 | sxwang | 2011-05-02 21:18:56 -0400 (Mon, 02 May 2011) | 1 line
+
+wrapper simulateevolution for function simulationCore, for internal randomizing. NOT FINISHED YET. preliminary test of initialization error on Rabi flops.
+------------------------------------------------------------------------
+r53 | sxwang | 2011-05-03 16:08:08 -0400 (Tue, 03 May 2011) | 1 line
+
+simulateevolution wrapper working for initialization error (only)
+------------------------------------------------------------------------
+r54 | Thomas.Monz | 2011-05-04 12:13:15 -0400 (Wed, 04 May 2011) | 1 line
+
+fixed bug with 'displaypmtdata'; use deepcopy on certain shared objects ...
+------------------------------------------------------------------------
+r55 | sxwang | 2011-05-04 12:23:12 -0400 (Wed, 04 May 2011) | 1 line
+
+removed extra return value for simulateevolution
+------------------------------------------------------------------------
+r56 | Thomas.Monz | 2011-05-06 10:58:55 -0400 (Fri, 06 May 2011) | 1 line
+
+framework for state and process tomography. state and proctomo are working already. have to add global tomographies and start on some pi stuff
+------------------------------------------------------------------------
+r57 | Thomas.Monz | 2011-05-06 11:13:05 -0400 (Fri, 06 May 2011) | 1 line
+
+small update on the database object
+------------------------------------------------------------------------
+r58 | Shannon.Wang | 2011-05-12 18:13:52 -0400 (Thu, 12 May 2011) | 1 line
+
+some fixes for the recently changed code
+------------------------------------------------------------------------
+r59 | Shannon.Wang | 2011-05-14 13:16:04 -0400 (Sat, 14 May 2011) | 1 line
+
+tm@mit: hspace obj now includes all operators required in/for the hilbertspace; some changes to the dataobj.displayphasespace which should be about a factor of 5 faster now ...
+------------------------------------------------------------------------
+r60 | Shannon.Wang | 2011-05-14 13:46:03 -0400 (Sat, 14 May 2011) | 1 line
+
+tm@mit: added 'hamiltonian_timedep_complete' that provide the hamiltonian for your parameters in the interaction frame (including phonons now) with and without the lamb-dicke approximation (depending on a variable that you can provide) - this hamiltonian has been tested and seems to work. yes, ike, also for the ms
+------------------------------------------------------------------------
+r61 | Shannon.Wang | 2011-05-14 14:08:32 -0400 (Sat, 14 May 2011) | 1 line
+
+tm@mit: we're counting ions from the righthand side. fixed the definition of params.addressing and subsequently the operator definition in hspace. once the other hamiltonian function are fixed/rewritten to be defined by the operator definition from hspace, the damned 'count from left/right' issue should be solved at each spot simultaneously; params includes the variable 'LDapproximation' now, which can be used for setting ld approximation on/off for all interactions (requires changes to the subsequent hamiltonians, but that should be easy/fast)
+------------------------------------------------------------------------
+r62 | Shannon.Wang | 2011-05-14 16:28:06 -0400 (Sat, 14 May 2011) | 1 line
+
+tm@mit: bufix for hamiltonian_timedep_complete; removed the 'dephase' argument in all hamiltonian functions - we'll add noise directly to the hamiltonian and not via an argument
+------------------------------------------------------------------------
+r63 | Shannon.Wang | 2011-05-14 19:23:47 -0400 (Sat, 14 May 2011) | 1 line
+
+tm@mit: new hamiltonian for timedep. stuff is working for the ms gate. shaping is working the required prefactors have been (roughly) determined. everything ready to go. final flaw: when shaping is switched on, two subsequent pulses screw up, while they give the correct output without shaping
+------------------------------------------------------------------------
+r64 | Shannon.Wang | 2011-05-14 19:24:16 -0400 (Sat, 14 May 2011) | 1 line
+
+script to check that the new ms stuff is working
+------------------------------------------------------------------------
+r65 | sxwang | 2011-05-14 20:46:26 -0400 (Sat, 14 May 2011) | 1 line
+
+fixed the pulse shaping flaw so now it works with any number of pulses. Still need to experimentally determine the duration correction factor (1.05 for pi/2) for the pulse shaping. Changed RMS so that whole fractions of pi/2 pulses gets omrabi adjusted properly.
+------------------------------------------------------------------------
+r66 | sxwang | 2011-05-17 14:15:17 -0400 (Tue, 17 May 2011) | 1 line
+
+Added Noise function to generate the hamiltonians for dephasing and add it to the full HT in simulationCore. Integrated implementation of dephasing: changed database object to do adding and averaging; simulationCore returns data object and simulateevolution does averaging over populations, not states. density matrices are calculated at the end. dephasing doesn't work for ODE-solver yet.
+------------------------------------------------------------------------
+r67 | sxwang | 2011-05-17 14:16:22 -0400 (Tue, 17 May 2011) | 1 line
+
+testscripts for Rabi and Ramsey demonstrating dephasing
+------------------------------------------------------------------------
+r68 | Shannon.Wang | 2011-05-17 17:39:22 -0400 (Tue, 17 May 2011) | 1 line
+
+tm@mit: implemeted testpart for carrier rabi oscillations. but alot more to go
+------------------------------------------------------------------------
+r69 | sxwang | 2011-05-17 17:56:37 -0400 (Tue, 17 May 2011) | 1 line
+
+removed params.points; always define params.stepsize
+------------------------------------------------------------------------
+r70 | Shannon.Wang | 2011-05-17 18:19:27 -0400 (Tue, 17 May 2011) | 1 line
+
+tm@mit added Ramsey exp to testsuite
+------------------------------------------------------------------------
+r71 | sxwang | 2011-05-20 01:14:41 -0400 (Fri, 20 May 2011) | 1 line
+
+implemented structure of noise_dict to return a dictionary of lambda t's to simulationCore/simulateevolution, and use dec.dict to select noise type. Intensity error framework added but not implemented yet.
+------------------------------------------------------------------------
+r72 | sxwang | 2011-05-20 16:39:55 -0400 (Fri, 20 May 2011) | 1 line
+
+Intensity fluctuations implemented and tested for Rabi and ACStark
+------------------------------------------------------------------------
+r73 | sxwang | 2011-05-21 00:35:41 -0400 (Sat, 21 May 2011) | 1 line
+
+added spontaneous emission during the evolution. also attempted to implement parallel python but the added options in qctools DO NOT WORK - don't use dec.doPP=True yet.
+------------------------------------------------------------------------
+r74 | sxwang | 2011-05-21 14:39:49 -0400 (Sat, 21 May 2011) | 1 line
+
+Fixed spontaneous decay to include normalization; new testscript to check spontaneous decay after initializing in D state.
+------------------------------------------------------------------------
+r75 | Thomas.Monz | 2011-05-22 05:31:35 -0400 (Sun, 22 May 2011) | 1 line
+
+fixed tomography for new data/simulation structure
+------------------------------------------------------------------------
+r76 | Thomas.Monz | 2011-05-22 06:12:14 -0400 (Sun, 22 May 2011) | 1 line
+
+moved all decoherence parameters into params, which is now a required input into decoherence(); fixed the majority of all scripts accordingly
+------------------------------------------------------------------------
+r77 | sxwang | 2011-05-23 23:41:24 -0400 (Mon, 23 May 2011) | 1 line
+
+spontaneous decay for the case of multiple ions or phonons. slight problem: entire unitary is replaced so the un-decayed ion experiences a delay instead of a proper time-evolution when the desired ion decays. Added progbar to simulateevolution.
+------------------------------------------------------------------------
+r78 | sxwang | 2011-05-24 09:20:20 -0400 (Tue, 24 May 2011) | 1 line
+
+fixed spontaneous decay so that other ions are not affected by decaying ion.
+------------------------------------------------------------------------
+r79 | Thomas.Monz | 2011-05-27 10:03:06 -0400 (Fri, 27 May 2011) | 1 line
+
+fixed most copyright concerns; added evaluation scripts for state and process tomography in a new evaluation folder; fixed a small bug with state tomography investigation pulses (ion ordering); added testscripts for state and proctomo to testsuite
+------------------------------------------------------------------------
+r80 | Thomas.Monz | 2011-05-27 10:06:23 -0400 (Fri, 27 May 2011) | 1 line
+
+forgot to add the files, fixed now
+------------------------------------------------------------------------
+r81 | Thomas.Monz | 2011-05-30 16:26:51 -0400 (Mon, 30 May 2011) | 1 line
+
+bugfixes to evaluation routines (links, paths); added testroutine for decoherence (state init)
+------------------------------------------------------------------------
+r82 | Thomas.Monz | 2011-05-31 18:04:16 -0400 (Tue, 31 May 2011) | 1 line
+
+separating pp from qctools for easier maintenance; adding folder tools with pp in it
+------------------------------------------------------------------------
+r83 | Thomas.Monz | 2011-05-31 18:27:34 -0400 (Tue, 31 May 2011) | 1 line
+
+removed doRandomize, it's provided by doRandomNTimes not eq 0 anyway; added MonteCarloPP for Shannon to see how a more complex pp input looks like; will try to work on those things the next days (after stuff for austin is done); off to bed now
+------------------------------------------------------------------------
+r84 | sxwang | 2011-05-31 23:31:35 -0400 (Tue, 31 May 2011) | 1 line
+
+ability to switch on/off decoherence for each pulse; default is every pulse on. added 'all' to dec.dict. first testscript for in-circuit fidelity evaluation, expICF-QEC.py.
+------------------------------------------------------------------------
+r85 | Thomas.Monz | 2011-06-01 07:38:33 -0400 (Wed, 01 Jun 2011) | 1 line
+
+incircuitgatefidelity: folder, dataloading and sample data for a 3 and 4 qubit process/gates
+------------------------------------------------------------------------
+r86 | Thomas.Monz | 2011-06-01 08:24:12 -0400 (Wed, 01 Jun 2011) | 1 line
+
+added quick extraction for the subset of data that is required for ikes fid.estimation
+------------------------------------------------------------------------
+r87 | sxwang | 2011-06-01 16:04:48 -0400 (Wed, 01 Jun 2011) | 1 line
+
+ideal qec sequence output agrees with simulation (at least up to phase and state labelling), but not with data yet.
+------------------------------------------------------------------------
+r88 | sxwang | 2011-06-01 19:14:41 -0400 (Wed, 01 Jun 2011) | 1 line
+
+evaluation functions to scan all possible phases in expQEC to match with experimental data. run expQEC.py first and then run the last two functions, after loading data into 'ikedata'. Get ideal evolution by running ideal/qec.py, and simulated ideal evolution by running experiment/expQEC.py. 
+------------------------------------------------------------------------
+r89 | sxwang | 2011-06-02 19:42:20 -0400 (Thu, 02 Jun 2011) | 1 line
+
+attempt to do ICF (in-circuit fidelity eval) using ideal calculations, in file icf-qec.py. in simtools, put statesatpulse in initialization of data to allow for calculations of density matrices after each pulse.
+------------------------------------------------------------------------
+r90 | sxwang | 2011-06-02 22:31:08 -0400 (Thu, 02 Jun 2011) | 1 line
+
+added weights to the error calculation, and legends for the graphs
+------------------------------------------------------------------------
+r91 | Thomas.Monz | 2011-06-03 10:10:44 -0400 (Fri, 03 Jun 2011) | 1 line
+
+something's off with the phase definitions, but at least the states are correct now
+------------------------------------------------------------------------
+r92 | Thomas.Monz | 2011-06-03 10:11:47 -0400 (Fri, 03 Jun 2011) | 1 line
+
+missed another minus in the MSy
+------------------------------------------------------------------------
+r93 | sxwang | 2011-06-03 11:22:26 -0400 (Fri, 03 Jun 2011) | 1 line
+
+icf-qec working now with corrected phases -- thanks Tomi.
+------------------------------------------------------------------------
+r94 | Thomas.Monz | 2011-06-03 15:09:21 -0400 (Fri, 03 Jun 2011) | 1 line
+
+preparations to include spontaneous decay into detection
+------------------------------------------------------------------------
+r95 | Thomas.Monz | 2011-06-03 17:18:00 -0400 (Fri, 03 Jun 2011) | 1 line
+
+noticed a flaw in the PMT decay calculation; fixed now
+------------------------------------------------------------------------
+r96 | sxwang | 2011-06-03 22:10:22 -0400 (Fri, 03 Jun 2011) | 1 line
+
+icf-qec with 2 gate positions and 2 dephase types. calculation of error based on density matrices instead of populations give better fidelity bound. 
+------------------------------------------------------------------------
+r97 | sxwang | 2011-06-04 14:14:32 -0400 (Sat, 04 Jun 2011) | 1 line
+
+fixed errorbars, normalized errors, switched to polyfit, 3 noise types
+------------------------------------------------------------------------
+r98 | I.Chuang | 2011-06-04 15:22:07 -0400 (Sat, 04 Jun 2011) | 2 lines
+
+add progressbar-2.2 
+
+------------------------------------------------------------------------
+r99 | I.Chuang | 2011-06-04 16:14:43 -0400 (Sat, 04 Jun 2011) | 3 lines
+
+added linewidth parameters to make plots look better, made vertical
+plot lines grey
+
+------------------------------------------------------------------------
+r100 | Thomas.Monz | 2011-06-10 11:28:30 -0400 (Fri, 10 Jun 2011) | 1 line
+
+few more fixed to the 'decay during measurement' part; a few more checks but should be kind of done now
+------------------------------------------------------------------------
+r101 | Thomas.Monz | 2011-06-14 06:36:45 -0400 (Tue, 14 Jun 2011) | 1 line
+
+the phase of the MS lightfield should now correctly give x/y rotations (previously it was the phase of the beat signal and had no effect on the operation) 
+------------------------------------------------------------------------
+r102 | Shannon.Wang | 2011-06-14 13:43:05 -0400 (Tue, 14 Jun 2011) | 1 line
+
+fixed phases in expQEC.py and it now gives approximately correct populations. determined the correct fudge factors for MS(pi/4). MS(pi/4) in expQEC still does not give the proper phases though.
+------------------------------------------------------------------------
+r103 | Shannon.Wang | 2011-06-16 04:12:47 -0400 (Thu, 16 Jun 2011) | 1 line
+
+testscripts for pp with functions and classes
+------------------------------------------------------------------------
+r104 | Shannon.Wang | 2011-06-16 04:13:44 -0400 (Thu, 16 Jun 2011) | 1 line
+
+oops, actually added the new files now
+------------------------------------------------------------------------
+r105 | Shannon.Wang | 2011-06-16 05:38:47 -0400 (Thu, 16 Jun 2011) | 1 line
+
+removed 'from numpy import *' in qctools
+------------------------------------------------------------------------
+r106 | Shannon.Wang | 2011-06-16 08:42:08 -0400 (Thu, 16 Jun 2011) | 1 line
+
+made Hamiltonian and Noise in qctools into classe and put them in new file qmtools.py. Fixed a few things in test_state_initialization. A few exp's deprecated by testsuite.
+------------------------------------------------------------------------
+r107 | Shannon.Wang | 2011-06-16 12:06:51 -0400 (Thu, 16 Jun 2011) | 1 line
+
+add to my_testpp a check that classes can be passed into job_server.submit as arg but not a class with lambda functions. Tried this by bypassing pulseseq[i].omrabi_t and now pp on simulationCore works if you set dec.doPP=True -- see expTest.py for example. Note required bug fix to ppworker.py to be able to import submodules like PyTIQC.core.qmtools.
+------------------------------------------------------------------------
+r108 | Shannon.Wang | 2011-06-17 04:35:41 -0400 (Fri, 17 Jun 2011) | 1 line
+
+construct time-dep parts of pulseseq inside simulationCore; integrated pp params into simtools and functions into qctools.
+------------------------------------------------------------------------
+r109 | Thomas.Monz | 2011-06-17 05:34:56 -0400 (Fri, 17 Jun 2011) | 1 line
+
+fix
+------------------------------------------------------------------------
+r110 | Shannon.Wang | 2011-06-17 09:16:50 -0400 (Fri, 17 Jun 2011) | 1 line
+
+removed expSpectrum and add testSpectrum showing RSB and BSB in detuning scan
+------------------------------------------------------------------------
+r111 | Shannon.Wang | 2011-06-17 12:25:23 -0400 (Fri, 17 Jun 2011) | 1 line
+
+flip the sign of delta in RMS: car_det = sb_ls - delta instead of sb_ls + delta fixes the expQEC sequence so that it agrees with experiment now. but is it actually what you do?
+------------------------------------------------------------------------
+r112 | Shannon.Wang | 2011-06-20 11:19:49 -0400 (Mon, 20 Jun 2011) | 1 line
+
+implemented heating rate; testscript is testscruit/testHeating.py.
+------------------------------------------------------------------------
+r113 | Shannon.Wang | 2011-06-20 14:31:57 -0400 (Mon, 20 Jun 2011) | 1 line
+
+add testscript for heating rate; added loading and saving of data objects via pickle.
+------------------------------------------------------------------------
+r114 | Shannon.Wang | 2011-06-21 14:24:40 -0400 (Tue, 21 Jun 2011) | 1 line
+
+new correction factors and 'short pulse factors' for new detuning of MS; fixed inconsistent time array between data.T and dec.decT to remove some calls to searchsorted.
+------------------------------------------------------------------------
+r115 | Shannon.Wang | 2011-06-22 05:59:02 -0400 (Wed, 22 Jun 2011) | 1 line
+
+added projection noise to timedep simulationCore
+------------------------------------------------------------------------
+r116 | Shannon.Wang | 2011-06-26 15:24:55 -0400 (Sun, 26 Jun 2011) | 1 line
+
+add MSparity to set of InvestigatePulseSequences: add Rcar(pi/2) pulse to MS(pi/2) to calculate fidelity from parity measurement. A few bug fixes e.g. remove duplicate data points, condition on the projective noise, etc. Remaining bug: when params.stepsize is set to anything other than 1, ODE solver sometimes gives a final solution vector of np.sqrt(np.sum(abs(ms_ode.y[:,-1])**2)) = 0.
+------------------------------------------------------------------------
+r117 | Shannon.Wang | 2011-06-27 12:21:54 -0400 (Mon, 27 Jun 2011) | 1 line
+
+option to save all data in InvestigatePulseSequence
+------------------------------------------------------------------------
+r118 | Thomas.Monz | 2011-06-29 10:48:37 -0400 (Wed, 29 Jun 2011) | 1 line
+
+added our server 'anna' to the list of cluster pcs
+------------------------------------------------------------------------
+r119 | Shannon.Wang | 2011-07-01 13:01:26 -0400 (Fri, 01 Jul 2011) | 1 line
+
+fixed pp so that hopefully it's actually parallel
+------------------------------------------------------------------------
+r120 | Shannon.Wang | 2011-07-04 12:49:58 -0400 (Mon, 04 Jul 2011) | 1 line
+
+fixed detuning of AC pulse to match experiment; nicer plotting of density matrices using U.plotBar3D; option to discard full state info in database to save space.
+------------------------------------------------------------------------
+r121 | Shannon.Wang | 2011-07-04 14:05:48 -0400 (Mon, 04 Jul 2011) | 1 line
+
+a first pulse parser to convert between PyTIQC-ideal and experiment
+------------------------------------------------------------------------
+r122 | Shannon.Wang | 2011-07-05 03:08:56 -0400 (Tue, 05 Jul 2011) | 1 line
+
+a to-b-written module for ICF, added now to make imports work
+------------------------------------------------------------------------
+r123 | Shannon.Wang | 2011-07-05 03:37:35 -0400 (Tue, 05 Jul 2011) | 1 line
+
+added lines to simulationCore to debug pp which has mysteriously broken again
+------------------------------------------------------------------------
+r124 | Shannon.Wang | 2011-07-05 07:37:14 -0400 (Tue, 05 Jul 2011) | 1 line
+
+undo the last change
+------------------------------------------------------------------------
+r125 | Shannon.Wang | 2011-07-07 16:56:31 -0400 (Thu, 07 Jul 2011) | 1 line
+
+added files used for generating, simulating, and evaluating 2-qubit ICF pulseseq/data: icf-2q.py and expICF2q.py for sim/eval, gates2ions.py for evaluating each gate in isolation. fixed spf for MS(3pi/16) gate so expQFT.py agrees with qft.py at the 98% level. add to ppParser options to convert from PyTIQC-ideal to PyTIQC-sim; also used for inserting gates for use by ICF. Fixed use of expm2 to expm in gates.py (expm2 does not work for 2-qubitscd ..). Also in gates.py added generic MS gate to be able to arbitrarily set MS gate phase. Put ICF-related functions in module InCircuitFidelity.py. add file ms.py to scan the phase of simulated MS gate to match experiment for use in qft.
+------------------------------------------------------------------------
+r126 | Shannon.Wang | 2011-07-08 14:52:48 -0400 (Fri, 08 Jul 2011) | 1 line
+
+rewrote ICf properly as a class.
+------------------------------------------------------------------------
+r127 | Shannon.Wang | 2011-07-11 11:21:02 -0400 (Mon, 11 Jul 2011) | 1 line
+
+added 'runAll' function to ICF to iterate over the gate/noise set. Add proper error estimates to ICF-bounded fidelities. added plotting functions to ICF. To simtools, added ability to unbalance the powers of the two fields for MS gates.
+------------------------------------------------------------------------
+r128 | Shannon.Wang | 2011-07-12 05:34:42 -0400 (Tue, 12 Jul 2011) | 1 line
+
+fixed intensity fluct to use a fixed vector of error values to speed things up
+------------------------------------------------------------------------
+r129 | Shannon.Wang | 2011-07-12 10:12:05 -0400 (Tue, 12 Jul 2011) | 1 line
+
+added addressing error; added progbar to unitary-evolution part of simulationCore. Switched to using Hamiltonian-timedep instead of Hamiltonian-timedep-complete for non-bichro pulses in ODEsolver to get rid of factor of 2 in rabi frequency.
+------------------------------------------------------------------------
+r130 | Shannon.Wang | 2011-07-13 04:11:50 -0400 (Wed, 13 Jul 2011) | 1 line
+
+add gatetype 'MS' to ppParser; verbose option and option to specify gatetypes for ICF. Add testscript 'icf-qft' to do ICF analysis on qft data from last week.
+------------------------------------------------------------------------
+r131 | Shannon.Wang | 2011-07-13 07:14:34 -0400 (Wed, 13 Jul 2011) | 1 line
+
+trying to fix pp server
+------------------------------------------------------------------------
+r132 | Shannon.Wang | 2011-07-13 07:20:11 -0400 (Wed, 13 Jul 2011) | 1 line
+
+trying to fix pp server attempt 2
+------------------------------------------------------------------------
+r133 | Shannon.Wang | 2011-07-13 07:46:54 -0400 (Wed, 13 Jul 2011) | 1 line
+
+undo last change ... grrr
+------------------------------------------------------------------------
+r134 | Shannon.Wang | 2011-07-14 08:48:52 -0400 (Thu, 14 Jul 2011) | 1 line
+
+fix/add ability to save data after every 5 runs of simulationcore; add def of global rotation with arbitrary phase to ideal.py.
+------------------------------------------------------------------------
+r135 | Shannon.Wang | 2011-07-15 03:35:42 -0400 (Fri, 15 Jul 2011) | 1 line
+
+bug fixes: params sent to ppservers were not deepcopied before. remove unnecessary calls to sum/prodFunctions when noise not turned on. added function to use local cpus for pp.
+------------------------------------------------------------------------
+r136 | Shannon.Wang | 2011-07-15 05:58:02 -0400 (Fri, 15 Jul 2011) | 1 line
+
+modified notation of dec.calcDephasing to be similar to other noise generation functions.
+------------------------------------------------------------------------
+r137 | Shannon.Wang | 2011-07-15 09:17:15 -0400 (Fri, 15 Jul 2011) | 1 line
+
+experimentally determined the conversion factor between coherence time and gaussian noise width (which unfortunately doesn't agree with theory :-(
+------------------------------------------------------------------------
+r138 | Shannon.Wang | 2011-07-15 10:12:16 -0400 (Fri, 15 Jul 2011) | 1 line
+
+got rid of 'fxpa'; pass params to pulses directly
+------------------------------------------------------------------------
+r139 | Shannon.Wang | 2011-07-15 10:26:07 -0400 (Fri, 15 Jul 2011) | 1 line
+
+removed 'from numpy import *' from simtools.py
+------------------------------------------------------------------------
+r140 | Shannon.Wang | 2011-07-15 12:48:45 -0400 (Fri, 15 Jul 2011) | 1 line
+
+fixed a few missing np's and also allow to switch sign of MS gate detuning; need to specify spf for either detunings.
+------------------------------------------------------------------------
+r141 | Shannon.Wang | 2011-07-18 12:35:01 -0400 (Mon, 18 Jul 2011) | 1 line
+
+added spf's for both detunings of MS; added readdata module from qpython for reading native 'lab-format' files; do ICF with populations only: for QFT(SSS) it does not change the fidelity bound.
+------------------------------------------------------------------------
+r142 | Shannon.Wang | 2011-07-18 13:47:35 -0400 (Mon, 18 Jul 2011) | 1 line
+
+I think something's wrong with the formula for decay_prob in DecayExcitations_XXX ... maybe fixed now
+------------------------------------------------------------------------
+r143 | Shannon.Wang | 2011-07-19 10:21:45 -0400 (Tue, 19 Jul 2011) | 1 line
+
+add logging to file from pp; cleaned up database object
+------------------------------------------------------------------------
+r144 | Shannon.Wang | 2011-07-19 11:13:45 -0400 (Tue, 19 Jul 2011) | 1 line
+
+remove debugging prints; fix missing variables in database
+------------------------------------------------------------------------
+r145 | Shannon.Wang | 2011-07-19 11:34:47 -0400 (Tue, 19 Jul 2011) | 1 line
+
+bug fix in database
+------------------------------------------------------------------------
+r146 | Shannon.Wang | 2011-07-19 14:03:04 -0400 (Tue, 19 Jul 2011) | 1 line
+
+fix data averaging in database; remove discardstates. svn database on my computer corrupted and I had to manually merge changes with the server's copy, may have missed some things ...
+------------------------------------------------------------------------
+r147 | Shannon.Wang | 2011-07-20 03:47:14 -0400 (Wed, 20 Jul 2011) | 1 line
+
+replace missing variable Pend in database; save data in long dataruns only once to save RAM.
+------------------------------------------------------------------------
+r148 | Shannon.Wang | 2011-07-20 05:42:34 -0400 (Wed, 20 Jul 2011) | 1 line
+
+renamed more variables in database; new saveRun function in qc to save pulseseq and params in addition to data. save all densmats at all pulses so as to be able to calculate fidelities with errorbars later, but note this takes up a lot of memory on the host. 
+------------------------------------------------------------------------
+r149 | Shannon.Wang | 2011-07-20 07:19:36 -0400 (Wed, 20 Jul 2011) | 1 line
+
+calculate errorbars on fidelities vs pulse
+------------------------------------------------------------------------
+r150 | Shannon.Wang | 2011-07-20 14:20:05 -0400 (Wed, 20 Jul 2011) | 1 line
+
+redesigned MS gate so that params.MSdelta (detuning) and not power is the input parameter. Also set params.shortestMS and the pulse duration of any longer multiples of it are calculated. New manually-fixed ShortPulseFactors and other fudge factors for both detunings. Added a cheat in BlackmanShape to add pulse shaping in the middle of pulses to e.g. keep the duration of an MS(8pi/16) pulse the same as an MS(pi/2) pulse.
+------------------------------------------------------------------------
+r151 | Shannon.Wang | 2011-07-21 10:22:48 -0400 (Thu, 21 Jul 2011) | 1 line
+
+changed def of eta, defining two recoilangles, for global & addressed beams; fixed a tiny bug in ODE solver where the last datapoint doesn't get saved if pulse.endtime happens to be close to a time in the data.T array. Put all MS correction factors into params and wrote optimization function to search for them -- this will have to be done for every detuning (currently for 28kHz)
+------------------------------------------------------------------------
+r152 | Shannon.Wang | 2011-07-21 11:20:56 -0400 (Thu, 21 Jul 2011) | 1 line
+
+finished setting MScorr paramsfor 28kHz.
+------------------------------------------------------------------------
+r153 | Shannon.Wang | 2011-07-21 12:38:00 -0400 (Thu, 21 Jul 2011) | 1 line
+
+added plotting functions and loading experiment data in expQFT.py
+------------------------------------------------------------------------
+r154 | Shannon.Wang | 2011-07-22 07:34:59 -0400 (Fri, 22 Jul 2011) | 1 line
+
+cleaned up expQFT.py a bit, change plotting to use median and 25/75 percentiles. add ideal and exp densmats for period 2/3 cases.
+------------------------------------------------------------------------
+r155 | Shannon.Wang | 2011-07-22 07:41:17 -0400 (Fri, 22 Jul 2011) | 1 line
+
+add QFTseq file and fix pulseseq concatenation
+------------------------------------------------------------------------
+r156 | Shannon.Wang | 2011-07-22 08:20:35 -0400 (Fri, 22 Jul 2011) | 1 line
+
+replace 'data received' with pbar; fix pulseseq concatenation again
+------------------------------------------------------------------------
+r157 | Shannon.Wang | 2011-07-22 10:14:11 -0400 (Fri, 22 Jul 2011) | 1 line
+
+put saveRun after data.mean
+------------------------------------------------------------------------
+r158 | Shannon.Wang | 2011-07-22 12:16:08 -0400 (Fri, 22 Jul 2011) | 1 line
+
+add ability to initialize a simulation with a densmat, by converting the densmat to a list of pure states with linalg.eig and simulating each one, averaging at the end.
+------------------------------------------------------------------------
+r159 | Thomas.Monz | 2011-07-25 09:50:45 -0400 (Mon, 25 Jul 2011) | 1 line
+
+added square root of a density matrix, fixed __init__ in tools not to use pyinterval
+------------------------------------------------------------------------
+r160 | Shannon.Wang | 2011-07-25 12:02:08 -0400 (Mon, 25 Jul 2011) | 1 line
+
+added option to turn off decoherence for any pulse (not tested yet); added SSO, jozsafid, and tracedist to fidelity evaluations. option to select those in expQFT.py. state/proctomo testscripts were broken, now fixed.
+------------------------------------------------------------------------
+r161 | Shannon.Wang | 2011-07-25 13:57:34 -0400 (Mon, 25 Jul 2011) | 1 line
+
+implemented spectator mode initialization as an initialized intensity offset on the addressing matrix. Value of params.specmodecoupling=0.02 (percent) is arbitrarily chosen for now.
+------------------------------------------------------------------------
+r162 | Shannon.Wang | 2011-07-26 06:54:05 -0400 (Tue, 26 Jul 2011) | 1 line
+
+fixed testscript for state initialization; added testscripts for ACStark, dephasing, and spont decay.
+------------------------------------------------------------------------
+r163 | Shannon.Wang | 2011-07-27 03:54:35 -0400 (Wed, 27 Jul 2011) | 1 line
+
+corrected formula for trace distance; params.MScorr['duration'] corrected for shape=5.
+------------------------------------------------------------------------
+r164 | Shannon.Wang | 2011-07-28 11:51:24 -0400 (Thu, 28 Jul 2011) | 1 line
+
+changes to qft.py to analyze new data; add ability to select evaluation type (fidelity, tracedist etc) to ICF.
+------------------------------------------------------------------------
+r165 | Shannon.Wang | 2011-07-28 14:11:06 -0400 (Thu, 28 Jul 2011) | 1 line
+
+cleaned up qft.py a bit more
+------------------------------------------------------------------------
+r166 | Shannon.Wang | 2011-07-29 11:08:46 -0400 (Fri, 29 Jul 2011) | 1 line
+
+add functions to add extra Delay pulses in a pulseseq to represent the 40 and 7 us it takes to switch between global and individual ion pulses
+------------------------------------------------------------------------
+r167 | sxwang | 2011-08-09 12:29:23 -0400 (Tue, 09 Aug 2011) | 1 line
+
+moved pp's server_dict to a text file
+------------------------------------------------------------------------
+r168 | sxwang | 2011-08-10 16:52:10 -0400 (Wed, 10 Aug 2011) | 1 line
+
+bug fix: removed calculation of params.coherenceTime from params.calcPulseParams() in case the latter gets called twice. proper closing of job_server.logger.
+------------------------------------------------------------------------
+r169 | sxwang | 2011-08-12 16:23:53 -0400 (Fri, 12 Aug 2011) | 1 line
+
+fixed AC pulse such that detuning is 20MHz instead of 80 and intensity factor is 6.3 instead of 85, the rest of the phase shift coming from a sigma-z term added to HT to account for effect of S-P transition. Use (pulse, params) as arguments to Hamiltonian.
+------------------------------------------------------------------------
+r170 | sxwang | 2011-08-16 14:22:15 -0400 (Tue, 16 Aug 2011) | 1 line
+
+corrected def of tracedist-rho; add MonteCarlo to evaluation; add all fidelity measures to MonteCarlo and make errorbars for experimental data in expQFT.py. In QFT, pulse #11 is 3pi/2 not 7pi/2.
+------------------------------------------------------------------------
+r171 | sxwang | 2011-08-17 16:43:46 -0400 (Wed, 17 Aug 2011) | 1 line
+
+added option 'use_ideal' to every pulse to switch to using exact unitaries as defined in ideal/gates.py, and to skip evolution of those pulses in qctools. Speeds up calculations considerably for use in ICF.
+------------------------------------------------------------------------
+r172 | sxwang | 2011-08-17 18:30:38 -0400 (Wed, 17 Aug 2011) | 1 line
+
+moved qft data files to new subdirectory
+------------------------------------------------------------------------
+r173 | sxwang | 2011-08-18 10:40:17 -0400 (Thu, 18 Aug 2011) | 1 line
+
+moved calculate_fidelity and plotting functions to new class EvaluateExpSim; sketch of class InCircuitFidelity using full simulation.
+------------------------------------------------------------------------
+r174 | sxwang | 2011-08-18 19:35:01 -0400 (Thu, 18 Aug 2011) | 1 line
+
+partially implemented ICF working on full simulation. Errors are parametrized by multiplicative factors on the associated physical parameters (e.g. coherenceTime for dephasing) etc. Still testing.
+------------------------------------------------------------------------
+r175 | sxwang | 2011-08-19 11:57:32 -0400 (Fri, 19 Aug 2011) | 1 line
+
+ICF now properly changes the error at every run with parametrization; added code to fitICFerror with matching sim & expt errors.
+------------------------------------------------------------------------
+r176 | sxwang | 2011-08-19 20:01:43 -0400 (Fri, 19 Aug 2011) | 1 line
+
+store the unitaries that were actually used to compute on simulation (including noises) in the pulse object. In ICF, run again with the matching parametrization and get the gate unitaries to calculate gate fidelity -- this last part not working yet. Error parametrization takes real numbers now. Also there's some issues with adding and removing Delays for pulseseq to be worked out.
+------------------------------------------------------------------------
+r177 | sxwang | 2011-08-22 14:35:47 -0400 (Mon, 22 Aug 2011) | 1 line
+
+calculate gate fidelity from error parametrization by computing Chi matrices from ideal & sim unitaries and get process fid. Use modules 'optimizechi' and 'quantumprocess' imported from qpython.
+------------------------------------------------------------------------
+r178 | sxwang | 2011-08-22 21:13:28 -0400 (Mon, 22 Aug 2011) | 1 line
+
+Functional ICF for at least non-MS gates now (tested so far on AC pulse in QFT sequence with addressing error). Unitaries saved for each run and gate fidelities computed from each chi matrix. 
+------------------------------------------------------------------------
+r179 | sxwang | 2011-08-23 19:50:06 -0400 (Tue, 23 Aug 2011) | 1 line
+
+in ICF: option to user-define error param interval; fixed gate fidelity formula. Otherwise mostly cosmetic changes to ICF: useful print statements, print gatetypes in human-readable format.
+------------------------------------------------------------------------
+r180 | sxwang | 2011-08-24 15:53:21 -0400 (Wed, 24 Aug 2011) | 1 line
+
+store all fidelity types in dictionary; check inequality between tracedist-rho and jozsafid.
+------------------------------------------------------------------------
+r181 | sxwang | 2011-08-25 21:56:41 -0400 (Thu, 25 Aug 2011) | 1 line
+
+implemented ScanParameters_in_Sequence with PP capability and some optimizations, as ProcTomo_PP.
+------------------------------------------------------------------------
+r182 | Thomas.Monz | 2011-08-30 14:31:01 -0400 (Tue, 30 Aug 2011) | 1 line
+
+proctomo is working now also for more than one qubit
+------------------------------------------------------------------------
+r183 | Thomas.Monz | 2011-08-30 14:37:20 -0400 (Tue, 30 Aug 2011) | 1 line
+
+proctomo is really working now (also for three qubits ...)
+------------------------------------------------------------------------
+r184 | sxwang | 2011-09-07 17:04:51 -0400 (Wed, 07 Sep 2011) | 1 line
+
+ProcTomo_PP actually works now ... fixed def of pulse.Uid in the case of addressed Rcar pulses
+------------------------------------------------------------------------
+r185 | sxwang | 2011-09-09 15:32:43 -0400 (Fri, 09 Sep 2011) | 1 line
+
+simulating full statetomo after each pulse including errors should be working now. Made changes to qctools to allow pulseseq to be an empty list, so we can do statetomo on the initial state. In InvestigatePulseSequence.py, absorbed class ProcTomo_PP into the original class ScanParameters_in_Sequence. Save all densmats in a new object output_qstates_cam_all (like output_dict['qstates_camera']) if running with doRandNtimes>1.
+------------------------------------------------------------------------
+r186 | sxwang | 2011-09-20 10:10:45 -0400 (Tue, 20 Sep 2011) | 1 line
+
+changed curvefitting in ICF to only use 3-5 neighbouring points. Proctomo in ICF (for MS gate) almost works ... need to fix some problems with imports.
+------------------------------------------------------------------------
+r187 | sxwang | 2011-09-20 10:51:07 -0400 (Tue, 20 Sep 2011) | 1 line
+
+moved InvestigatePulseSeq to evaluation
+------------------------------------------------------------------------
+r188 | sxwang | 2011-09-27 09:59:59 -0400 (Tue, 27 Sep 2011) | 1 line
+
+switched to interp1d for ICF; added progressbar to ICF. fixed a bug involving UtrAll when running multiple gates within the same ICFobj instance. streamlined for automated iteration over all gatetypes in a sequence.
+------------------------------------------------------------------------
+r189 | sxwang | 2011-09-27 16:46:12 -0400 (Tue, 27 Sep 2011) | 1 line
+
+add autodetection of params.shortestMS. added a few files not previously part of repos.
+------------------------------------------------------------------------
+r190 | sxwang | 2011-09-28 11:53:35 -0400 (Wed, 28 Sep 2011) | 1 line
+
+cleaning up some files
+------------------------------------------------------------------------
+r191 | sxwang | 2011-09-28 15:14:33 -0400 (Wed, 28 Sep 2011) | 1 line
+
+moved ideal.gates into core and removed everything else in ideal (the functionality is duplicated by pulse.use_ideal).
+------------------------------------------------------------------------
+r192 | sxwang | 2011-09-28 16:55:19 -0400 (Wed, 28 Sep 2011) | 1 line
+
+cleaned up files in testsuite
+------------------------------------------------------------------------
+r193 | sxwang | 2011-09-29 17:58:05 -0400 (Thu, 29 Sep 2011) | 1 line
+
+got started on some documentation using Sphinx.
+------------------------------------------------------------------------
+r194 | sxwang | 2011-09-30 10:31:36 -0400 (Fri, 30 Sep 2011) | 1 line
+
+moved EvaluateExpSim to its own class/file EvaluateData
+------------------------------------------------------------------------
+r195 | sxwang | 2011-09-30 10:36:39 -0400 (Fri, 30 Sep 2011) | 1 line
+
+tried to remove docs/ from svn but probably messed it up ...
+------------------------------------------------------------------------
+r196 | sxwang | 2011-09-30 10:39:30 -0400 (Fri, 30 Sep 2011) | 1 line
+
+too many files to keep track of in docs/_build/ etc, let's just get rid of it for now ...
+------------------------------------------------------------------------
+r197 | sxwang | 2011-09-30 18:39:10 -0400 (Fri, 30 Sep 2011) | 1 line
+
+fleshed out some of the documentation.
+------------------------------------------------------------------------
+r198 | sxwang | 2011-10-04 13:47:13 -0400 (Tue, 04 Oct 2011) | 1 line
+
+a few bug fixes in simtools in light of ICF2q sequence: fixed def of phase in MS gate (empirically); sign of params.MSdelta include in the construction of RMS.Uid. A few changes in EvaluateData so it can be directly called to set the ideal and exp densmats from variables in addition to from saved numpy files; enable it to plot fidelities in the case of only sim / only exp / both.
+------------------------------------------------------------------------
+r199 | sxwang | 2011-10-06 14:26:55 -0400 (Thu, 06 Oct 2011) | 1 line
+
+set up to do ICF on ICF2q sequence.
+------------------------------------------------------------------------
+r200 | sxwang | 2011-10-17 18:54:44 -0400 (Mon, 17 Oct 2011) | 1 line
+
+some minor changes to ICF including: errorbars as median and percentiles instead of std; linear scaling of errorparam and plotting according to a physical parameter (for dephasing: phase error); fitting using polyfit again instead of interp1d; function to directly plot total error vs gate fidelity.
+------------------------------------------------------------------------
+r201 | sxwang | 2011-10-21 19:18:41 -0400 (Fri, 21 Oct 2011) | 1 line
+
+in qctools: option to save data without clearing T,Y,YR; fix scaling mistake in init error; added batch-processing in PP: save the data into a shlv file after every dec.doRandBatch=40 iterations; in qmtools: fix missing self in recursive kronN; in icf: do not add initial delay pulse when doing proctomo; in evd: put loadexpdata outside of loadDataNPY; plotting works if only one of sim or exp is loaded; expTest.py for ICF on 1 pulse; script for generating entire error budget table in expQFT.py.
+------------------------------------------------------------------------
+r202 | sxwang | 2011-10-22 12:40:00 -0400 (Sat, 22 Oct 2011) | 1 line
+
+moved jobcounter to the right place; minor fixes to math in makeErrorBudget script.
+------------------------------------------------------------------------
+r203 | sxwang | 2011-10-31 22:07:55 -0400 (Mon, 31 Oct 2011) | 1 line
+
+fixed bug with ODE giving NaN with projection noise in qctools. Added option in ICF to choose using unitaries or ProcTomo to calculate gate fidelity, including optional errorbars for PT (3 iruns only). Fixed plot ordering and labels in EvaluateData.
+------------------------------------------------------------------------
+r204 | sxwang | 2011-11-02 16:50:34 -0400 (Wed, 02 Nov 2011) | 1 line
+
+made pulseseq into a class.
+------------------------------------------------------------------------
+r205 | sxwang | 2011-11-10 14:40:27 -0500 (Thu, 10 Nov 2011) | 1 line
+
+added 'phaseoffset' noise type. option to directly turn off correlation in dephasing if correlationTime is set to be small; dephasing sample variance conversion factor added to ICF; fixed missing factor of 2 in Hamiltonian_timedep_complete.
+------------------------------------------------------------------------
+r206 | sxwang | 2011-11-29 19:21:04 -0500 (Tue, 29 Nov 2011) | 1 line
+
+fixed missing copy.deepcopy in ICF; still experimenting with test files.
+------------------------------------------------------------------------
+r207 | sxwang | 2011-12-10 16:56:48 -0500 (Sat, 10 Dec 2011) | 1 line
+
+in ICF: option to load formula from shlv file; in qctools: print pulse type by (type, theta, phi).
+------------------------------------------------------------------------
+r208 | Shannon.Wang | 2011-12-10 19:55:10 -0500 (Sat, 10 Dec 2011) | 1 line
+
+added script to put mathematica's csv outputs to shlv files
+------------------------------------------------------------------------
+r209 | sxwang | 2011-12-16 19:06:58 -0500 (Fri, 16 Dec 2011) | 1 line
+
+setting of initial state (ground and thermal) to hspace. started to explore alternate dephasing model where sigma_z is applied indep of frame shifts (not finished yet).
+------------------------------------------------------------------------
+r210 | sxwang | 2012-01-02 20:17:43 -0500 (Mon, 02 Jan 2012) | 1 line
+
+changed error definition for ICF to include only 'error relative to state before GOI'.
+------------------------------------------------------------------------
+r211 | sxwang | 2012-01-03 15:03:53 -0500 (Tue, 03 Jan 2012) | 1 line
+
+density matrix input (not necessarily pure state) to simulation works now. Tweaked dephasing conversion factor params.dephaseConv to match Ramsey decay better.
+------------------------------------------------------------------------
+r212 | sxwang | 2012-01-03 19:42:23 -0500 (Tue, 03 Jan 2012) | 1 line
+
+density matrix as input really works now. Added 3 options for error metric to ICF.
+------------------------------------------------------------------------
+r213 | sxwang | 2012-01-04 12:04:46 -0500 (Wed, 04 Jan 2012) | 1 line
+
+fixed bug with params.setShortestMS; add concatenate function to PulseSequence
+------------------------------------------------------------------------
+r214 | sxwang | 2012-01-04 17:51:36 -0500 (Wed, 04 Jan 2012) | 1 line
+
+rewrote Hamiltonian to use hspace.operator_dict instead of constructing it with for-loops, so that 3-level can be easily implemented. Old Hamiltonian function is qm.Hamiltonian_old. Added 3-level versions to hspace.operator_dict. Generalized qm.indexToState and qm.stateToIndex to 3-levels.
+------------------------------------------------------------------------
+r215 | sxwang | 2012-01-05 14:16:19 -0500 (Thu, 05 Jan 2012) | 1 line
+
+implemented hiding ions by modifying pulse.targetion
+------------------------------------------------------------------------
+r216 | sxwang | 2012-01-05 20:22:36 -0500 (Thu, 05 Jan 2012) | 1 line
+
+added functions to PulseSequence to include PulseSequence instances in initialization and change ions. Testing ion hiding with order finding sequence.
+------------------------------------------------------------------------
+r217 | sxwang | 2012-01-06 20:19:24 -0500 (Fri, 06 Jan 2012) | 1 line
+
+put calculateIdealUnitary for pulse as a function in the base class; fixed counting-qubit-backwards for hiddenions array; fixed qubit counting in gates.controlMN; add function displaytracedstates to gates.py to facilitate looking at outputs of order finding.
+------------------------------------------------------------------------
+r218 | sxwang | 2012-01-09 20:48:38 -0500 (Mon, 09 Jan 2012) | 1 line
+
+added hiddenion to ideal functions in gates.py. Added error metric 'one' to ICf.
+------------------------------------------------------------------------
+r219 | sxwang | 2012-01-10 17:36:54 -0500 (Tue, 10 Jan 2012) | 1 line
+
+corrected definitions for ideal gates with hidden ions; order-finding with 5 qubits works now in the ideal case.
+------------------------------------------------------------------------
+r220 | sxwang | 2012-01-16 17:32:15 -0500 (Mon, 16 Jan 2012) | 1 line
+
+new test file for checking fidelity of single-ion Rcar within 3 ions; added option to save only end data points in ODE solver to save space.
+------------------------------------------------------------------------
+r221 | sxwang | 2012-01-18 17:39:10 -0500 (Wed, 18 Jan 2012) | 1 line
+
+option in EvaluateData to do averaging over grouperrors=100 runs and then compute statistics over the resulting averages. Beginnings of module sequel.py which uses MySQLdb to save simulations and jobs to the tiqcspice db on marvin.
+------------------------------------------------------------------------
+r222 | sxwang | 2012-01-20 10:40:36 -0500 (Fri, 20 Jan 2012) | 1 line
+
+ICF: added metric 'wtail' and code in test script to generate html table
+------------------------------------------------------------------------
+r223 | sxwang | 2012-01-23 20:11:35 -0500 (Mon, 23 Jan 2012) | 1 line
+
+added ICF metric 'wtail_rel' and ICF code to expQFT.
+------------------------------------------------------------------------
+r224 | sxwang | 2012-01-31 13:41:43 -0500 (Tue, 31 Jan 2012) | 1 line
+
+included Kitaev versions into expOrderFind.py (not working yet). Fixed stdev formulas in ICF. change 'self.MSdelta' to 'params.MSdelta' in simtools for generating ideal U for MS, otherwise order4 breaks. added pulse 'MeasInit'.
+------------------------------------------------------------------------
+r225 | sxwang | 2012-02-01 19:12:30 -0500 (Wed, 01 Feb 2012) | 1 line
+
+tweaked graphs in ICF; includes code in expQFT.py to generate figure 3 for ICF paper (corresponding to repos ICFpaper rev 5).
+------------------------------------------------------------------------
+r226 | sxwang | 2012-02-24 15:10:58 -0500 (Fri, 24 Feb 2012) | 1 line
+
+deactivate the sequel module if mysql is not installed; otherwise only minor changes to parameters in test files.
+------------------------------------------------------------------------
+r227 | sxwang | 2012-02-28 18:32:38 -0500 (Tue, 28 Feb 2012) | 1 line
+
+removed some references to qpython to fix importing
+------------------------------------------------------------------------
+r228 | sxwang | 2012-02-29 14:44:37 -0500 (Wed, 29 Feb 2012) | 1 line
+
+possibly fixed bug in qmtools.sumFunctions
+------------------------------------------------------------------------
+r229 | Shannon.Wang | 2012-03-12 23:03:26 -0400 (Mon, 12 Mar 2012) | 1 line
+
+fixed importing of progressbar in testsuite
+------------------------------------------------------------------------
+r230 | Shannon.Wang | 2012-03-21 06:37:42 -0400 (Wed, 21 Mar 2012) | 1 line
+
+new def of densmat input for ICF in case where ICFobj.fidtype is population-based.
+------------------------------------------------------------------------
+r231 | Shannon.Wang | 2012-03-21 09:12:36 -0400 (Wed, 21 Mar 2012) | 1 line
+
+stop hard-coding path to server_dict
+------------------------------------------------------------------------
+r232 | Shannon.Wang | 2012-03-22 05:32:35 -0400 (Thu, 22 Mar 2012) | 1 line
+
+use asymmetric errorbars in ICF; corrected projection operator for MeasInit
+------------------------------------------------------------------------
+r233 | Shannon.Wang | 2012-03-22 09:41:10 -0400 (Thu, 22 Mar 2012) | 1 line
+
+reversed qubit order in Hamiltonian_timedep_complete; fixed minor bugs in ICF
+------------------------------------------------------------------------
+r234 | Shannon.Wang | 2012-03-22 13:18:20 -0400 (Thu, 22 Mar 2012) | 1 line
+
+add some correction factors for MS gate with hiding
+------------------------------------------------------------------------
+r235 | Shannon.Wang | 2012-03-23 05:21:10 -0400 (Fri, 23 Mar 2012) | 1 line
+
+add option to disable MShidecorr
+------------------------------------------------------------------------
+r236 | Shannon.Wang | 2012-03-26 13:37:26 -0400 (Mon, 26 Mar 2012) | 1 line
+
+add ToffoliMN to gates; add counttypes to pulseseq.
+------------------------------------------------------------------------
+r237 | Shannon.Wang | 2012-03-27 11:16:07 -0400 (Tue, 27 Mar 2012) | 1 line
+
+fixed Kitaev sequences for order finding for orders 3,4
+------------------------------------------------------------------------
+r238 | Shannon.Wang | 2012-04-02 06:20:26 -0400 (Mon, 02 Apr 2012) | 1 line
+
+add errors for hiding, and proper averaging of data objects with classical registers
+------------------------------------------------------------------------
+r239 | root | 2012-04-02 23:44:00 -0400 (Mon, 02 Apr 2012) | 1 line
+
+Added plotting functionality to testsuite
+------------------------------------------------------------------------
+r240 | Shannon.Wang | 2012-04-03 07:36:57 -0400 (Tue, 03 Apr 2012) | 1 line
+
+add pulse sequences and simulations for Shor
+------------------------------------------------------------------------
+r241 | Shannon.Wang | 2012-04-04 03:56:35 -0400 (Wed, 04 Apr 2012) | 1 line
+
+new shorter sequence for shor7a; fixed ordering of output states for all Kitaev simulations.
+------------------------------------------------------------------------
+r242 | Shannon.Wang | 2012-04-06 04:36:10 -0400 (Fri, 06 Apr 2012) | 1 line
+
+added Fredkin function to gate.py; added functions to generate total unitaries from a sequence of ideal unitaries in gates.py and also from a PulseSequence.
+------------------------------------------------------------------------
+r243 | Shannon.Wang | 2012-04-06 06:56:57 -0400 (Fri, 06 Apr 2012) | 1 line
+
+add some examples of sequences using core/gates to derive ideal unitaries
+------------------------------------------------------------------------
+r244 | Thomas.Monz | 2012-04-06 08:57:04 -0400 (Fri, 06 Apr 2012) | 1 line
+
+icf evaluation based on Hofmann bounds; a start that requires a bit more theory work
+------------------------------------------------------------------------
+r245 | Shannon.Wang | 2012-04-06 10:32:41 -0400 (Fri, 06 Apr 2012) | 1 line
+
+add population-based icf evaluation on Hofmann bounds from Tomi's start.
+------------------------------------------------------------------------
+r246 | Shannon.Wang | 2012-04-10 05:12:17 -0400 (Tue, 10 Apr 2012) | 1 line
+
+made Kitaev into a class; add hiding error in measurement.
+------------------------------------------------------------------------
+r247 | Shannon.Wang | 2012-04-10 06:47:23 -0400 (Tue, 10 Apr 2012) | 1 line
+
+fix missing deepcopy, add Hiding pulses to Kitaev sequence
+------------------------------------------------------------------------
+r248 | Shannon.Wang | 2012-04-10 07:07:53 -0400 (Tue, 10 Apr 2012) | 1 line
+
+option to switch off hidingerrfor MeasInit pulse
+------------------------------------------------------------------------
+r249 | Shannon.Wang | 2012-04-10 07:20:21 -0400 (Tue, 10 Apr 2012) | 1 line
+
+moved addswitchtime to the dec.dict so I don't keep forgetting it
+------------------------------------------------------------------------
+r250 | Shannon.Wang | 2012-04-10 12:45:50 -0400 (Tue, 10 Apr 2012) | 1 line
+
+add missing 'dec.dict['all']' for hiding error; fixed wrong index in Kitaev.getQFT; 3-pulse sequence for testSingleR.py.
+------------------------------------------------------------------------
+r251 | Shannon.Wang | 2012-04-11 04:41:51 -0400 (Wed, 11 Apr 2012) | 1 line
+
+save data.register from all runs so we can get errorbars
+------------------------------------------------------------------------
+r252 | Shannon.Wang | 2012-04-11 10:42:37 -0400 (Wed, 11 Apr 2012) | 1 line
+
+save classical_reg in qctools by default to database; add ability to process data_group[i].registerAll in Kitaev.getQFT.
+------------------------------------------------------------------------
+r253 | Shannon.Wang | 2012-04-14 05:43:53 -0400 (Sat, 14 Apr 2012) | 1 line
+
+fixed bug with dec.heating function; moved copy.deepcopy into PulseSequence generation; add functions to deal with saving all populations from multiple runs in Kitaev.py.
+------------------------------------------------------------------------
+r254 | sxwang | 2012-04-16 20:08:57 -0400 (Mon, 16 Apr 2012) | 1 line
+
+add Uid def to calculateIdealUnitary to Rblue; fix missing copy.deepcopy in Kitaev and add assert to check pulse time consistency in simulateevolution.
+------------------------------------------------------------------------
+r255 | sxwang | 2012-04-20 10:16:40 -0400 (Fri, 20 Apr 2012) | 1 line
+
+in Kitaev.py, add option to save data_group[i].RhoPNAll only; allow negative thetas in Rac pulses by flipping the sign of the Hamiltonian. New pulse sequence for shor7a and shor11.
+------------------------------------------------------------------------
+r256 | sxwang | 2012-05-13 14:35:35 -0400 (Sun, 13 May 2012) | 1 line
+
+a bunch of small changes: added doPPKitaev option to expShor. fix parameters in expMSparity. add option to load data.RhoPNAll only in EvaluateData. do single plots in EvaluateData. default ppservers to local. replace PulseSequence.printsequence() with __str__. 
+------------------------------------------------------------------------
+r257 | sxwang | 2012-05-13 17:06:26 -0400 (Sun, 13 May 2012) | 1 line
+
+add jump operator and normalization for spontdecay and heating. add heating testscript.
+------------------------------------------------------------------------
+r258 | sxwang | 2012-05-21 22:06:14 -0400 (Mon, 21 May 2012) | 1 line
+
+disable MC collapse operator for now; adding Tutorials to documentation.
+------------------------------------------------------------------------
+r259 | sxwang | 2012-05-21 22:13:13 -0400 (Mon, 21 May 2012) | 1 line
+
+actually add the doc files now
+------------------------------------------------------------------------
+r260 | Shannon.Wang | 2012-05-30 19:31:24 -0400 (Wed, 30 May 2012) | 1 line
+
+add to documentation
+------------------------------------------------------------------------
+r261 | sxwang | 2012-06-01 15:12:40 -0400 (Fri, 01 Jun 2012) | 1 line
+
+replace printpulse with __str__; more documentation
+------------------------------------------------------------------------
+r262 | sxwang | 2012-06-11 13:00:09 -0400 (Mon, 11 Jun 2012) | 1 line
+
+removed unused functions, add a bit more documentation in code, in preparation for git export
+------------------------------------------------------------------------
+r263 | sxwang | 2012-06-11 14:11:17 -0400 (Mon, 11 Jun 2012) | 1 line
+
+allow 2sigma in heatingrate testcase; add database doc
+------------------------------------------------------------------------

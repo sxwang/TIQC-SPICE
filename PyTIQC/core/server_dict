@@ -1,0 +1,4 @@
+# add servers here in this format:
+# server_name: ip address
+# e.g.:
+# server_name: 255.255.255.255
