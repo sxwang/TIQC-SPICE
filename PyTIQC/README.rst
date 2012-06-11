@@ -1,5 +1,5 @@
 ============
-TIQC-SPICE
+TIQC-SPICE/PyTIQC
 ============
 
 TIQC-SPICE/PyTIQC is a low-level physical simulation of Trapped Ion Quantum Computing (TIQC).
@@ -27,24 +27,21 @@ After installing the above, add to path by (e.g.) adding this to your .bashrc::
 Files
 -----
 
-| PyTIQC/core         - main simulation engine
-| PyTIQC/evaluation   - additional modules for analysis, usually in conjunction with data
-| PyTIQC/experiments  - simulations of specific experiments / pulse sequences
-| PyTIQC/testsuite    - unit test suite. also include simple examples of experiments
-| PyTIQC/tools	    - additional tools, including external modules
+* PyTIQC/core         - main simulation engine
+* PyTIQC/evaluation   - additional modules for analysis, usually in conjunction with data
+* PyTIQC/experiments  - simulations of specific experiments / pulse sequences
+* PyTIQC/testsuite    - unit test suite. also include simple examples of experiments
+* PyTIQC/tools	    - additional tools, including external modules
 
 How-To
 ------
 
-The :doc:`tutorial` is a good place to start. Read this section for a step-by-step guide on writing and running a simulation.
-
-The :doc:`libref` lists all the modules, classes, and functions defined in TIQC-SPICE. This portion of the documentation is automatically generated from docstrings.
-
+Documentation can be found at http://web.mit.edu/~cua/www/quanta/TIQCdoc/.
 
 Authors
 -------
 
-| Shannon X. Wang <sxwang@mit.edu>
-| Thomas Monz <Thomas.Monz@uibk.ac.at>
-| Richard Rines <rrines@mit.edu>
+* Shannon X. Wang <sxwang@mit.edu>
+* Thomas Monz <Thomas.Monz@uibk.ac.at>
+* Richard Rines <rrines@mit.edu>
 
