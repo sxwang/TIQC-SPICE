@@ -228,8 +228,9 @@ class ScanParameter_in_Sequence:
         self.output_dict['pmt_excitations'][index,1:] = data.P_PMT_end
 
         # does not work if pulseseq is empty ... remove for now
-        #self.output_dict['pmt_at_pulse'][index,0] = self.parameter[index]
-        #self.output_dict['pmt_at_pulse'][index,1:] = data.P_PMT_P[-2]
+        if len(self.sequence) > 0:
+            self.output_dict['pmt_at_pulse'][index,0] = self.parameter[index]
+            self.output_dict['pmt_at_pulse'][index,1:] = data.P_PMT_P[-2]
 
         # store all runs in MonteCarlo 
         nRuns = np.shape(data.RhoPNAll)[0]
