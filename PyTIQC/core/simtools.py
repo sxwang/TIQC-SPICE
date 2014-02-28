@@ -477,7 +477,7 @@ class parameters:
       # pp settings. default is use all local cores
       self.ppcpus = 'autodetect' # local # of cores to use
       self.ppsecret = "tiqc_cluster1"
-      self.ppservers = ('local',)
+      self.ppservers = ['local']
       self.pplog = True  # do logging to file 'pp.log'
 
       # save data with timestamp of start time
@@ -497,7 +497,7 @@ class parameters:
 
   def use_servers(self, servers):
       ''' select servers to use for pp '''
-      if servers == 'all':
+      if 'all' in servers or servers == 'all':
           self.ppcpus = 'autodetect' # local # of cores to use
           self.ppsecret = "tiqc_cluster1"
           self.ppservers = []

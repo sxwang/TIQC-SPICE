@@ -284,8 +284,8 @@ def simulationCore(pulseseq, params, dec):
     splg = scipy.linalg
     pi = np.pi
 
-    #qmtools = PyTIQC.core.qmtools
-    #simtools = PyTIQC.core.simtools
+    qmtools = PyTIQC.core.qmtools
+    simtools = PyTIQC.core.simtools
 
     # make list of times and state vector
     totaltime = pulseseq.totaltime

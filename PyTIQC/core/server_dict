@@ -2,3 +2,4 @@
 # server_name: ip address
 # e.g.:
 # server_name: 255.255.255.255
+qcondor11:192.168.5.67

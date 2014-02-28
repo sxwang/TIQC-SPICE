@@ -139,7 +139,7 @@ class Kitaev:
             self.data_group = [0,0,0,0]
             dec.doPPprintstats = True
             def jobfunc(x, pulseseq, params, dec):
-                return qctools.simulateevolution(pulseseq[x], params, dec)
+                return PyTIQC.core.qctools.simulateevolution(pulseseq[x], params, dec)
             controls = [0,1,2,3]
             jobs = [(ctl, job_server.submit(jobfunc, \
                     args=(ctl, pulseseq, params, dec), \
