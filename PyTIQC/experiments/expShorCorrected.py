@@ -14,7 +14,7 @@ reload(Kitaev)
 
 pi = np.pi
 
-def go():
+def main():
     ### run params ##################################
     pulseseqfileShor = 'experiments/Shorseq2.py'
    
@@ -352,3 +352,6 @@ def go():
         f.close()
 
     return True#dataobj
+
+if __name__ == '__main__':
+    main()
