@@ -1031,6 +1031,8 @@ class PulseSequence():
             if pulse.type == "Z":
                 pulse.ion = ionindices[pulse.ion]
                 pulse.targetion = np.copy(params.addressing[pulse.ion, :])
+            elif pulse.type == "H":
+                pulse.ion = ionindices[pulse.ion]
 
     def addDelays(self, params):
         ''' add appropriate delays to pulseseq to account for ion switching'''
