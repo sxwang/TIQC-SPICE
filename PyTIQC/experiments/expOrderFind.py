@@ -146,7 +146,7 @@ def GeneratePulseSeq(Perm, Perm2, Perm4, QFTseq, doKitaev):
         ])
         return pulseseq
     else:
-        pulseseq_group = Kit.GeneratePulseSeq(params, Perm4, Perm2, Perm)
+        pulseseq_group = Kit.GeneratePulseSeq(params, [Perm4, Perm2, Perm])
 
         return pulseseq_group
 
