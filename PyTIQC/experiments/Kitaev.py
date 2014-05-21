@@ -19,12 +19,14 @@ class Kitaev:
     def __init__(self):
         self.data_group = []
 
-    def GeneratePulseSeq(self, params, Perm4, Perm2, Perm):
-        ''' generate 4 pulse sequences given 3 permutations '''
-        control90 = [sim.Delay(params, sim.Rac(params, pi/2, 0, 0).duration), \
-                     sim.Rac(params, pi/2, 0, 0)]
-        control45 = [sim.Delay(params, sim.Rac(params, pi/4, 0, 0).duration), \
-                     sim.Rac(params, pi/4, 0, 0)]
+    def GeneratePulseSeq(self, params, Perms):
+        ''' generate pulse sequences given all permutations '''\
+
+        self.nOps = len(Perms)
+        controlRots = [ \
+             [sim.Delay(params, sim.Rac(params, pi/2**(i+1), 0, 0).duration),
+              sim.Rac(params, pi/2**(i+1), 0, 0)]
+                    for i in range(self.nOps)]
 
         Hadamard0 = sim.PulseSequence( [ \
                 sim.Rcar(params, pi/4, pi),
@@ -32,41 +34,32 @@ class Kitaev:
                 sim.Rcar(params, pi/4, 0) ])
 
         def PulseSeqWithControls(ctl):
-            # 'ctl' is a bit array of control qubits, 2 in this case
-            ctlstr = np.binary_repr(ctl).zfill(2)
-            pulseseq = sim.PulseSequence([ \
-                # 1st qubit
-                Hadamard0,
-                Perm4,
-                Hadamard0,
-                sim.Hide(params, 1, True),
-                sim.Hide(params, 2, True),
-                sim.MeasInit(params, 0),
-                sim.Hide(params, 1, False),
-                sim.Hide(params, 2, False),
-                # 2nd qubit
-                Hadamard0,
-                Perm2, 
-                copy.deepcopy(control90[ int(ctlstr[1]) ]),
-                Hadamard0,
-                sim.Hide(params, 1, True),
-                sim.Hide(params, 2, True),
-                sim.MeasInit(params, 0),
-                sim.Hide(params, 1, False),
-                sim.Hide(params, 2, False),
-                # 3rd qubit
-                Hadamard0,
-                Perm, 
-                copy.deepcopy(control90[ int(ctlstr[0]) ]),
-                copy.deepcopy(control45[ int(ctlstr[1]) ]),
-                Hadamard0,
-                sim.Hide(params, 1, True),
-                sim.Hide(params, 2, True),
-                sim.MeasInit(params, 0, incl_hidingerr=False),                
-                ])
+            # 'ctl' is a bit array of control qubits
+            ctlstr = np.binary_repr(ctl).zfill(self.nOps-1)
+            pulseseq = sim.PulseSequence([])
+            
+            for k in range(self.nOps):
+                pulseseq.append(Hadamard0)
+                pulseseq.append(Perms[k])
+                pulseseq += [copy.deepcopy(controlRots[i] \
+                              [int(ctlstr[self.nOps-i-k-1])]) for i in range(k)]
+                pulseseq.append(Hadamard0)
+
+                if k == self.nOps-1:
+                    pulseseq += [ \
+                      sim.Hide(params, 1, True),
+                      sim.Hide(params, 2, True),
+                      sim.MeasInit(params, 0, incl_hidingerr=False) ] 
+                else:
+                    pulseseq += [ \
+                      sim.Hide(params, 1, True),
+                      sim.Hide(params, 2, True),
+                      sim.MeasInit(params, 0),
+                      sim.Hide(params, 1, False),
+                      sim.Hide(params, 2, False) ]
             return pulseseq
         pulseseq_group = []
-        for ctl in range(4):
+        for ctl in range(2**(self.nOps-1)):
             pulseseq_group.append( PulseSeqWithControls(ctl) )
 
         return pulseseq_group
@@ -75,38 +68,27 @@ class Kitaev:
         ''' for 3 qubits, give output of QFT based on 3 classical measurements '''
         if data_group == None:
             data_group = self.data_group
-        result = np.zeros(8)
-        if ind == None: reg = data_group[0].register
-        else: reg = data_group[0].registerAll[ind]
-        result[0] = reg[0][0] * reg[1][0] * reg[2][0]
-        result[4] = reg[0][0] * reg[1][0] * reg[2][1]
-        if ind == None: reg = data_group[1].register
-        else: reg = data_group[1].registerAll[ind]
-        result[1] = reg[0][1] * reg[1][0] * reg[2][0]
-        result[5] = reg[0][1] * reg[1][0] * reg[2][1]
-        if ind == None: reg = data_group[2].register
-        else: reg = data_group[2].registerAll[ind]
-        result[2] = reg[0][0] * reg[1][1] * reg[2][0]
-        result[6] = reg[0][0] * reg[1][1] * reg[2][1]
-        if ind == None: reg = data_group[3].register
-        else: reg = data_group[3].registerAll[ind]
-        result[3] = reg[0][1] * reg[1][1] * reg[2][0]
-        result[7] = reg[0][1] * reg[1][1] * reg[2][1]
-        #print np.around(result,3)
-        self.result = result
+        result = np.zeros(2**self.nOps)
 
+        for k in range(2**self.nOps):
+            if ind == None: reg = data_group[k%(2**(self.nOps-1))].register
+            result[k] = 1
+            bitstr = np.binary_repr(k).zfill(self.nOps)
+            for i in range(self.nOps):
+                result[k] *= reg[i][int(bitstr[self.nOps-i-1])]
+
+        self.result = result
         return result
+
 
     def getQFTall(self, data_group=None):
         ''' get the QFT outputs for a series of simulations '''
         if data_group == None:
             data_group = self.data_group
 
-        numruns = np.min([
-                np.shape(data_group[0].registerAll)[0],
-                np.shape(data_group[1].registerAll)[0],
-                np.shape(data_group[2].registerAll)[0],
-                np.shape(data_group[3].registerAll)[0] ])
+        numruns = np.min([ \
+                np.shape(data_group[k].registerAll)[0]
+                for k in range(2**(self.nOps-1)) ])
         resultAll = []
 
         for run in range(numruns):
@@ -123,7 +105,7 @@ class Kitaev:
 
     def simulateevolution(self, pulseseq, params, dec, doPP=False):
         if not doPP:
-            for ctl in range(4):
+            for ctl in range(2**(self.nOps-1)):
                 print ctl
                 data = qc.simulateevolution(pulseseq[ctl], params, dec)
                 self.data_group.append(data)
@@ -132,15 +114,15 @@ class Kitaev:
 
         else:
             job_server = pp.Server( \
-                ncpus = 4, 
+                ncpus = 1, 
                 ppservers = params.ppservers, 
                 secret = params.ppsecret)
 
-            self.data_group = [0,0,0,0]
+            self.data_group = [0 for _ in range(2**(self.nOps-1))]
             dec.doPPprintstats = True
             def jobfunc(x, pulseseq, params, dec):
                 return PyTIQC.core.qctools.simulateevolution(pulseseq[x], params, dec)
-            controls = [0,1,2,3]
+            controls = range(2**(self.nOps-1))
             jobs = [(ctl, job_server.submit(jobfunc, \
                     args=(ctl, pulseseq, params, dec), \
                     modules=('numpy','scipy', 'PyTIQC.core.simtools', \
