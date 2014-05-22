@@ -19,7 +19,11 @@ class Kitaev:
     def __init__(self):
         self.data_group = []
 
-    def GeneratePulseSeq(self, params, Perms):
+    def GeneratePulseSeq(self, params, Perms, perm2=None, perm3=None):
+
+        #Legacy support for old-style calls:
+        if perm2 and perm3:
+            Perms = [Perms,perm2,perm3]
         ''' generate pulse sequences given all permutations '''\
 
         self.nOps = len(Perms)
